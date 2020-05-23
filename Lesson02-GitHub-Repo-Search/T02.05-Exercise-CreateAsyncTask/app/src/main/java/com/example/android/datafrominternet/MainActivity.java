@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if (s != null && s.equals("")) {
+            if (s != null &&! s.equals("")) {
                 mUrlDisplayTextView.setText(s);
             }
         }
