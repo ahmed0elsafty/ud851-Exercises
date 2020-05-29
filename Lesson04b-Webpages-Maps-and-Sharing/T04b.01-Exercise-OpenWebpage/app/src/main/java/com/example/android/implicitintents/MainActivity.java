@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
     void openWebPage(String Url) {
         Uri webPage = Uri.parse(Url);
         Intent intent = new Intent(ACTION_VIEW, webPage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
         startActivity(intent);
     }
 }
