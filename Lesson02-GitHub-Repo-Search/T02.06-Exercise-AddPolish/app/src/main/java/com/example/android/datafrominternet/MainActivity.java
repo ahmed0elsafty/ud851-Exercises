@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
-        mErrorMessageTextView= (TextView) findViewById(R.id.tv_error_message_display);
-        mProgressBar= (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        mErrorMessageTextView = (TextView) findViewById(R.id.tv_error_message_display);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
     }
 
     /**
@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
         new GithubQueryTask().execute(githubSearchUrl);
     }
 
-    private void showJsonDataView(){
+    private void showJsonDataView() {
         mErrorMessageTextView.setVisibility(View.INVISIBLE);
         mSearchResultsTextView.setVisibility(View.VISIBLE);
     }
 
-    private void showErrorMessage(){
+    private void showErrorMessage() {
         mErrorMessageTextView.setVisibility(View.VISIBLE);
         mSearchResultsTextView.setVisibility(View.INVISIBLE);
     }
@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            super.onPreExecute();
             mProgressBar.setVisibility(View.VISIBLE);
-            mErrorMessageTextView.setVisibility(View.INVISIBLE);
         }
 
         @Override
@@ -119,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
             if (githubSearchResults != null && !githubSearchResults.equals("")) {
                 mSearchResultsTextView.setText(githubSearchResults);
                 showJsonDataView();
+            } else {
+                showErrorMessage();
             }
-            showErrorMessage();
         }
     }
 }
