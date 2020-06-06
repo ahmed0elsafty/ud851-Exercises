@@ -85,16 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Change button text
         mButton.setText(getString(R.string.show_definition));
+        if (!mData.moveToNext()){
+            mButton.setText("Start Again!");
+            mData.moveToFirst();
+        }
 
-
-        if (mData != null) {
+        if (mData != null&&!mData.isLast()) {
             if (mData.moveToNext()) {
                 mData.moveToNext();
             }
             mWordTextView.setText(mData.getString(mWordCol));
             mDefinitionTextView.setText(mData.getString(mDefinitionCol));
             mDefinitionTextView.setVisibility(View.INVISIBLE);
-
         }
 
         mCurrentState = STATE_HIDDEN;
